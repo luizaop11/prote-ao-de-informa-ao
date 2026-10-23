@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101827">
+    <title>CriptoLab | Segurança Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a href="#" class="brand">🔐 CriptoLab</a>
+        <span class="tag">LABORATÓRIO EDUCATIVO</span>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <span class="eyebrow">PROGRAMAÇÃO • PYTHON • SEGURANÇA</span>
+            <h1>Explore o mundo da <span>criptografia</span></h1>
+            <p>Aprenda como funcionam cifras, hashes, autenticação e ataques de força bruta por meio de demonstrações interativas.</p>
+            <div class="hero-stats">
+                <div><strong>06</strong><span>módulos</span></div>
+                <div><strong>100%</strong><span>interativo</span></div>
+                <div><strong>0</strong><span>instalações</span></div>
+            </div>
+        </section>
+
+        <nav class="tabs" aria-label="Módulos do projeto">
+            <button class="tab active" data-target="cifra">01. Cifra</button>
+            <button class="tab" data-target="hash">02. Hash</button>
+            <button class="tab" data-target="login">03. Login</button>
+            <button class="tab" data-target="comuns">04. Senhas comuns</button>
+            <button class="tab" data-target="forca">05. Força bruta</button>
+            <button class="tab" data-target="seguranca">06. Segurança</button>
+        </nav>
+
+        <section id="cifra" class="panel active">
+            <div class="section-heading">
+                <span class="number">01</span>
+                <div>
+                    <h2>Criptografia por substituição</h2>
+                    <p>Transforme letras e números usando regras simples, como nas primeiras atividades em Python.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <label for="textoCifra">Texto para transformar</label>
+                <input id="textoCifra" type="text" value="marcelo123!" maxlength="200" autocomplete="off">
+
+                <label for="deslocamento">Deslocamento numérico</label>
+                <div class="range-line">
+                    <input id="deslocamento" type="range" min="1" max="9" value="1">
+                    <output id="valorDeslocamento">1</output>
+                </div>
+
+                <div class="button-row">
+                    <button id="btnCifrar" class="primary">Criptografar</button>
+                    <button id="btnDecifrar" class="secondary">Descriptografar</button>
+                </div>
+
+                <label for="resultadoCifra">Resultado</label>
+                <div class="result-line">
+                    <output id="resultadoCifra" class="output">dqketsg234!</output>
+                    <button id="copiarCifra" class="secondary">Copiar</button>
+                </div>
+                <p id="mensagemCifra" class="message" aria-live="polite"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>Como funciona?</h3>
+                <p>As letras minúsculas são substituídas por um dicionário baseado no teclado QWERTY. Letras maiúsculas seguem a mesma regra, números podem ser deslocados e símbolos são preservados.</p>
+                <p class="warning-text">Esta cifra é apenas didática. Não utilize para proteger senhas reais.</p>
+            </div>
+        </section>
+
+        <section id="hash" class="panel">
+            <div class="section-heading">
+                <span class="number">02</span>
+                <div>
+                    <h2>Laboratório de hash</h2>
+                    <p>Observe como uma entrada é transformada em um resumo numérico de tamanho fixo.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <label for="textoHash">Texto de entrada</label>
+                <input id="textoHash" type="text" value="Marcelo123!" maxlength="500" autocomplete="off">
+
+                <label for="fatorHash">Fator de multiplicação didático</label>
+                <select id="fatorHash">
+                    <option value="12">12</option>
+                    <option value="31" selected>31</option>
+                    <option value="500">500</option>
+                </select>
+
+                <button id="btnHash" class="primary full">Calcular hash didático</button>
+
+                <label for="resultadoHash">Resultado hexadecimal (32 bits)</label>
+                <div class="result-line">
+                    <output id="resultadoHash" class="output">—</output>
+                    <button id="copiarHash" class="secondary">Copiar</button>
+                </div>
+                <p id="mensagemHash" class="message" aria-live="polite"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>Entenda o algoritmo</h3>
+                <pre><code>valor = 0
+for letra in senha:
+    valor = valor * 31 + ord(letra)
+    valor %= 2**32
+resultado = f"{valor:08x}"</code></pre>
+                <p>O cálculo acima é uma demonstração de hash simples, não uma função segura para armazenar senhas. O tamanho fixo do resultado não impede colisões.</p>
+                <p class="warning-text">Em sistemas reais, utilize algoritmos próprios para senhas, como Argon2id, scrypt ou bcrypt, com salt exclusivo.</p>
+            </div>
+        </section>
+
+        <section id="login" class="panel">
+            <div class="section-heading">
+                <span class="number">03</span>
+                <div>
+                    <h2>Simulação de cadastro e login</h2>
+                    <p>Cadastre uma senha de demonstração e tente entrar com ela. O navegador guarda apenas o resumo didático durante esta sessão.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Cadastro</h3>
+                <label for="usuarioCadastro">Nome de usuário</label>
+                <input id="usuarioCadastro" type="text" value="estudante" maxlength="40" autocomplete="off">
+
+                <label for="senhaCadastro">Senha de demonstração</label>
+                <input id="senhaCadastro" type="password" value="marcelo123" maxlength="100" autocomplete="new-password">
+
+                <button id="btnCadastro" class="primary full">Cadastrar usuário</button>
+                <p id="mensagemCadastro" class="message" aria-live="polite"></p>
+            </div>
+
+            <div class="card">
+                <h3>Entrar</h3>
+                <label for="usuarioLogin">Nome de usuário</label>
+                <input id="usuarioLogin" type="text" value="estudante" maxlength="40" autocomplete="off">
+
+                <label for="senhaLogin">Senha</label>
+                <input id="senhaLogin" type="password" placeholder="Digite sua senha" maxlength="100" autocomplete="off">
+
+                <button id="btnLogin" class="primary full">Fazer login</button>
+                <p id="mensagemLogin" class="message" aria-live="polite"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>O que acontece?</h3>
+                <p>O cadastro calcula um hash didático. No login, o sistema calcula novamente o hash da senha digitada e compara os resultados.</p>
+                <p class="warning-text">Esta simulação não é um sistema de autenticação real. O hash utilizado não é seguro, os dados ficam apenas no navegador e não há servidor ou banco de dados protegido.</p>
+            </div>
+        </section>
+
+        <section id="comuns" class="panel">
+            <div class="section-heading">
+                <span class="number">04</span>
+                <div>
+                    <h2>Detector de senhas comuns</h2>
+                    <p>Compare uma senha de demonstração com uma lista educativa de senhas frequentemente utilizadas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <label for="senhaVerificar">Senha para verificar</label>
+                <input id="senhaVerificar" type="password" value="123456" maxlength="100" autocomplete="off">
+                <button id="btnVerificar" class="primary full">Verificar senha</button>
+                <div id="resultadoComuns" class="result-box" aria-live="polite">Aguardando verificação.</div>
+                <h3>Exemplos da lista</h3>
+                <div id="listaComuns" class="chip-list"></div>
+            </div>
+
+            <div class="info-card">
+                <h3>Por que evitar senhas populares?</h3>
+                <p>Atacantes costumam testar primeiro senhas conhecidas e combinações previsíveis. Use senhas longas, únicas e, se possível, um gerenciador de senhas.</p>
+            </div>
+        </section>
+
+        <section id="forca" class="panel">
+            <div class="section-heading">
+                <span class="number">05</span>
+                <div>
+                    <h2>Simulador de força bruta</h2>
+                    <p>Veja como o número de combinações cresce com o tamanho da senha e teste um exemplo pequeno e controlado.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <label for="tamanhoForca">Comprimento da senha</label>
+                <div class="range-line">
+                    <input id="tamanhoForca" type="range" min="1" max="8" value="4">
+                    <output id="valorTamanho">4</output>
+                </div>
+
+                <label for="alfabetoForca">Conjunto de caracteres</label>
+                <select id="alfabetoForca">
+                    <option value="2">Somente 0 e 1 (2 caracteres)</option>
+                    <option value="10">Dígitos de 0 a 9 (10 caracteres)</option>
+                    <option value="26" selected>Letras minúsculas (26 caracteres)</option>
+                    <option value="36">Letras minúsculas e números (36 caracteres)</option>
+                    <option value="62">Letras maiúsculas, minúsculas e números (62 caracteres)</option>
+                </select>
+
+                <div class="metric">
+                    <span>Combinações possíveis</span>
+                    <strong id="totalCombinacoes">456.976</strong>
+                </div>
+                <div class="metric">
+                    <span>Estimativa a 1 milhão de tentativas/s</span>
+                    <strong id="tempoEstimado">menos de 1 segundo</strong>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3>Demonstração controlada</h3>
+                <p class="small-text">O exemplo abaixo usa apenas os caracteres 0 e 1 e limita a busca a 256 tentativas, para evitar travar o navegador.</p>
+
+                <label for="senhaAlvo">Senha de teste (somente 0 e 1, até 8 caracteres)</label>
+                <input id="senhaAlvo" type="text" value="101" maxlength="8" autocomplete="off">
+
+                <button id="btnForca" class="primary full">Executar demonstração</button>
+                <div id="resultadoForca" class="result-box" aria-live="polite">Aguardando demonstração.</div>
+            </div>
+
+            <div class="info-card">
+                <h3>Por que o tamanho importa?</h3>
+                <p>O número de combinações é calculado como caracteres possíveis elevados ao comprimento da senha. Dobrar o conjunto de caracteres ou aumentar o comprimento pode elevar muito o esforço necessário.</p>
+                <p class="warning-text">Esta demonstração não acessa contas, não testa serviços externos e não utiliza listas de credenciais reais.</p>
+            </div>
+        </section>
+
+        <section id="seguranca" class="panel">
+            <div class="section-heading">
+                <span class="number">06</span>
+                <div>
+                    <h2>Boas práticas de segurança</h2>
+                    <p>Revise os conceitos aprendidos e aplique-os ao criar suas próprias senhas.</p>
+                </div>
+            </div>
+
+            <div class="security-grid">
+                <article class="info-card">
+                    <span class="icon">🔑</span>
+                    <h3>Senhas únicas</h3>
+                    <p>Não reutilize a mesma senha em vários serviços.</p>
+                </article>
+                <article class="info-card">
+                    <span class="icon">📏</span>
+                    <h3>Comprimento</h3>
+                    <p>Prefira senhas longas ou frases-senha difíceis de adivinhar.</p>
+                </article>
+                <article class="info-card">
+                    <span class="icon">🧂</span>
+                    <h3>Salt e hash</h3>
+                    <p>Sistemas reais usam salts únicos e algoritmos específicos para senhas.</p>
+                </article>
+                <article class="info-card">
+                    <span class="icon">🛡️</span>
+                    <h3>Autenticação extra</h3>
+                    <p>Ative a autenticação multifator sempre que possível.</p>
+                </article>
+            </div>
+
+            <div class="card">
+                <h3>Checklist de aprendizado</h3>
+                <label class="check-item"><input type="checkbox"> Entendi como funciona uma cifra de substituição.</label>
+                <label class="check-item"><input type="checkbox"> Entendi a diferença entre hash e criptografia.</label>
+                <label class="check-item"><input type="checkbox"> Entendi como a comparação de hashes simula um login.</label>
+                <label class="check-item"><input type="checkbox"> Entendi por que senhas comuns são arriscadas.</label>
+                <label class="check-item"><input type="checkbox"> Entendi como o número de combinações aumenta.</label>
+            </div>
+
+            <div class="info-card">
+                <h3>Conclusão</h3>
+                <p>Criptografia, hash e autenticação são conceitos diferentes. As cifras deste projeto e o hash numérico são exercícios didáticos, não mecanismos adequados para proteger dados reais.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>CriptoLab • Projeto educativo de programação e segurança digital.</p>
+            <p>Não utilize senhas reais neste laboratório.</p>
+        </footer>
+    </main>
+</body>
+</html>
